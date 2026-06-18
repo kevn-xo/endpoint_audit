@@ -1,0 +1,53 @@
+{
+  "report_dir": "data/reports",
+  "baseline_dir": "data/baseline",
+  "log_dir": "logs",
+  "log_file": "logs/audit.log",
+  "suspicious_process_paths": [
+    "\\Temp\\",
+    "\\AppData\\",
+    "\\Public\\",
+    "\\Downloads\\",
+    "\\ProgramData\\Temp\\"
+  ],
+  "suspicious_process_names": [
+    "mimikatz.exe",
+    "nc.exe",
+    "ncat.exe",
+    "psexec.exe",
+    "wce.exe",
+    "pwdump.exe",
+    "procdump.exe",
+    "cobaltstrike.exe"
+  ],
+  "critical_services": [
+    "WinDefend",
+    "EventLog",
+    "wuauserv",
+    "MpsSvc",
+    "Spooler",
+    "LanmanServer"
+  ],
+  "startup_reg_keys": [
+    {
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+    },
+    {
+      "hive": "HKLM",
+      "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
+    },
+    {
+      "hive": "HKCU",
+      "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"
+    },
+    {
+      "hive": "HKCU",
+      "path": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce"
+    }
+  ],
+  "risk_path_score": 5,
+  "risk_name_score": 8,
+  "risk_unsigned_score": 4,
+  "risk_nonexistent_score": 6
+}
