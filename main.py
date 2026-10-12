@@ -16,14 +16,27 @@ from datetime import datetime
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, BASE_DIR)
 
-from modules.logger    import get_logger
-from modules.collector import (
-    collect_system_metadata, collect_processes, collect_services,
-    collect_startup_keys,   collect_local_admins,
-    collect_network_connections, collect_installed_software,
-)
-from modules.analyzer  import analyze
-from modules.reporter  import save_html, save_json
+if os.name != "nt":
+    print("endpoint_audit requires Windows. This tool cannot run on non-Windows systems.", file=sys.stderr)
+    raise SystemExit(1)
+
+try:
+    from modules.logger    import get_logger
+    from modules.collector import (
+        collect_system_metadata, collect_processes, collect_services,
+        collect_startup_keys,   collect_local_admins,
+        collect_network_connections, collect_installed_software,
+    )
+    from modules.analyzer  import analyze
+    from modules.reporter  import save_html, save_json
+except ModuleNotFoundError as exc:
+    missing = exc.name or "dependency"
+    print(
+        f"Missing dependency: {missing}. Install the required packages with:\n"
+        "python -m pip install -r requirements.txt",
+        file=sys.stderr,
+    )
+    raise SystemExit(1) from exc
 
 
 def load_config(config_path: str) -> dict:

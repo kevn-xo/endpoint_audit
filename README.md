@@ -81,6 +81,7 @@ endpoint_audit/
 ```bash
 git clone https://github.com/kevn-xo/endpoint_audit.git
 cd endpoint_audit
+python -m pip install -r requirements.txt
 ```
 
 Run a full audit and get an HTML report:
